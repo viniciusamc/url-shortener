@@ -1,0 +1,9 @@
+CREATE TABLE url(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    link TEXT NOT NULL,
+    newLink TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    remove_at TIMESTAMP
+);
+
+CREATE UNIQUE INDEX idx_url_newLink ON url (newLink);
