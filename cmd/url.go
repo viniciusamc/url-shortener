@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -39,7 +40,9 @@ func (app *application) newURL(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	app.writeJson(w, 201, envelope{"link": link}, nil)
+	fullURL := fmt.Sprintf("%s://%s/%s", "http", r.Host, link)
+
+	app.writeJson(w, 201, envelope{"shortened_url": fullURL}, nil)
 }
 
 func (app *application) goToUrl(w http.ResponseWriter, r *http.Request) {
